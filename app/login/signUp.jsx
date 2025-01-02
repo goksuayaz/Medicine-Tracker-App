@@ -4,6 +4,7 @@ import Colors from '../../constant/Colors'
 import { useRouter } from 'expo-router';
 import { auth } from './../../config/FirebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setLocalStorage } from '../../service/Storage';
 
 
 export default function SignUp() {
@@ -26,6 +27,8 @@ export default function SignUp() {
                 await updateProfile(user, {
                     displayName: userName
                 })
+                await setLocalStorage('userDetail', user);
+
                 router.push('(tabs)')
                 // ...
             })
