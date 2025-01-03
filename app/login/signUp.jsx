@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Colors from '../../constant/Colors'
 import { useRouter } from 'expo-router';
 import { auth } from './../../config/FirebaseConfig'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setLocalStorage } from '../../service/Storage';
 
 
@@ -30,7 +30,7 @@ export default function SignUp() {
                 await setLocalStorage('userDetail', user);
 
                 router.push('(tabs)')
-                // ...
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -39,7 +39,7 @@ export default function SignUp() {
                 if (errorCode == 'auth/email-already-in-use') {
                     ToastAndroid.show('Email already exist', ToastAndroid.BOTTOM)
                 }
-                // ..
+
             });
     }
 
